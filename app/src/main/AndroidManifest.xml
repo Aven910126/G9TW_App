@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tw2ver01">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TW2Ver01">
+        <activity
+            android:name=".page_register"
+            android:exported="false" />
+        <activity
+            android:name=".page_login"
+            android:exported="false" />
+        <activity
+            android:name=".page_emergency_outcome"
+            android:exported="false" />
+        <activity
+            android:name=".page_Liveimage"
+            android:exported="false" />
+        <activity
+            android:name=".page_Gps"
+            android:exported="false" />
+        <activity
+            android:name=".page_emergency_input"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".page_heartbeat" />
+    </application>
+
+</manifest>
