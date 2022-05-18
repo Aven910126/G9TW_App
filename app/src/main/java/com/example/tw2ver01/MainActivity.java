@@ -41,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
         Intent ie = new Intent(this,page_emergency_outcome.class);
         startActivity(ie);
     }
+    public void gotologin  (View v){
+        Intent ik = new Intent(this,page_login.class);
+        startActivity(ik);
+    }
+    public void gotoregister  (View v){
+        Intent ih = new Intent(this,page_register.class);
+        startActivity(ih);
+    }
+
+
+
+
 //    public void reg(View view){
 //
 //        startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
