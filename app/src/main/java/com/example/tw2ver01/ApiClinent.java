@@ -21,7 +21,6 @@ public class ApiClinent {
                 .build();
 
 
-
         return retrofit;
     }
 

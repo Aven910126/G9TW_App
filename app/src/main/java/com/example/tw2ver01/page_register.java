@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,10 +33,17 @@ public class page_register extends AppCompatActivity {
         rbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterRequest registerRequest = new RegisterRequest();
-                registerRequest.setEmail(riptmail.getText().toString());
-                registerRequest.setPassword(riptpwd.getText().toString());
-                registerUser(registerRequest);
+                if(TextUtils.isEmpty(riptmail.getText().toString())||TextUtils.isEmpty(rusername.getText().toString())||TextUtils.isEmpty(riptpwd.getText().toString())||TextUtils.isEmpty(rcpwd.getText().toString())){
+
+                    String message = "All input required";
+                    Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();;
+                }else{
+                    RegisterRequest registerRequest = new RegisterRequest();
+                    registerRequest.setEmail(riptmail.getText().toString());
+                    registerRequest.setPassword(riptpwd.getText().toString());
+                    registerRequest.setUsername(rusername.getText().toString());
+                    registerUser(registerRequest);
+                }
             }
         });
 
@@ -58,7 +66,6 @@ public class page_register extends AppCompatActivity {
                     String message = "An error occurred please try again later ...";
                     Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();;
                 }
-
             }
 
             @Override
