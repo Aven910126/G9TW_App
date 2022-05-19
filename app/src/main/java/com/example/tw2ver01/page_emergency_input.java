@@ -40,7 +40,8 @@ public class page_emergency_input extends AppCompatActivity {
     public static final String EXTRA_MESSAGE="com.example.tw2ver01.MESSAGE";
     public static final String EXTRA_MESSAGE1="com.example.tw2ver01.MESSAGE";
     public static final String EXTRA_MESSAGE2="com.example.tw2ver01.MESSAGE";
-    OkHttpClient client = new OkHttpClient();
+
+    OkHttpClient client = new OkHttpClient().newBuilder().build();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +80,11 @@ public class page_emergency_input extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
-                RequestBody body = RequestBody.create(mediaType, jsonObject.toString());
+                RequestBody body = RequestBody.create(jsonObject.toString(),mediaType);
                 Request request = new Request.Builder()
-                        .url("http://127.0.0.1:8080/api/EmergencyContact/create")
-                        .post(body)
+                        .url("https://7943-2001-b011-b800-d081-eda0-db8a-6027-74aa.jp.ngrok.io/api/EmergencyContact/create")
+                        .method("POST", body)
+                        .addHeader("Content-Type", "application/json")
                         .build();
                 Call call = client.newCall(request);
                 call.enqueue(new Callback() {
