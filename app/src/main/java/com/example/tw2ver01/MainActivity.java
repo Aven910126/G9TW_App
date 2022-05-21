@@ -11,15 +11,72 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 //import com.example.tw2ver01.dao.UserDao;
+
+
+
+
 public class MainActivity extends AppCompatActivity {
     LoginResponse loginResponse;
+    Button reg,login,live,btngps,emycbtn,hebtbtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        reg = findViewById(R.id.reg);
+        login = findViewById(R.id.login);
+        live = findViewById(R.id.live);
+        btngps = findViewById(R.id.btngps);
+        emycbtn = findViewById(R.id.emycbtn);
+        hebtbtn = findViewById(R.id.hebtbtn);
+
+
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,page_register.class));
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,page_login.class));
+            }
+        });
+
+        live.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,page_Liveimage.class));
+            }
+        });
+
+        btngps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,page_maps1.class));
+            }
+        });
+
+        emycbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,page_emergency_input.class));
+            }
+        });
+
+        hebtbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,page_heartbeat.class));
+            }
+        });
 
 
         Intent intent = getIntent();
@@ -27,36 +84,6 @@ public class MainActivity extends AppCompatActivity {
             loginResponse = (LoginResponse) intent.getSerializableExtra("data");
             Log.e("Tag","=====>"+loginResponse.getEmail());
         }
-
-    }
-
-    public void gotoemergencyinput  (View v){
-        Intent it = new Intent(this,page_emergency_input.class);
-        startActivity(it);
-    }
-    public void gotoheartbeat  (View v){
-        Intent ia = new Intent(this,page_heartbeat.class);
-        startActivity(ia);
-    }
-    public void gotoGPS  (View v){
-        Intent ib = new Intent(this,page_Gps.class);
-        startActivity(ib);
-    }
-    public void gotoLiveimage  (View v){
-        Intent ic = new Intent(this,page_Liveimage.class);
-        startActivity(ic);
-    }
-    public void  gotoemergencyoutcome(View v){
-        Intent ie = new Intent(this,page_emergency_outcome.class);
-        startActivity(ie);
-    }
-    public void gotologin  (View v){
-        Intent ik = new Intent(this,page_login.class);
-        startActivity(ik);
-    }
-    public void gotoregister  (View v){
-        Intent ih = new Intent(this,page_register.class);
-        startActivity(ih);
     }
 
 

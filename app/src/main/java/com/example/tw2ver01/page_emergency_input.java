@@ -50,9 +50,9 @@ public class page_emergency_input extends AppCompatActivity {
         Intent intent1 = new  Intent(page_emergency_input.this, page_emergency_outcome.class);
         Intent intent2 = new  Intent(page_emergency_input.this, page_emergency_outcome.class);
         Bundle bundle = new Bundle();
-        EditText name = (EditText) findViewById(R.id.name);//取得聯絡人姓名
-        EditText call = (EditText) findViewById(R.id.call);//取得聯絡人稱謂
-        EditText phone = (EditText) findViewById(R.id.phone);//取得聯絡人電話
+        EditText name = findViewById(R.id.name);//取得聯絡人姓名
+        EditText call = findViewById(R.id.call);//取得聯絡人稱謂
+        EditText phone =findViewById(R.id.phone);//取得聯絡人電話
         String name1 = name.getText().toString();
         String call1 = call.getText().toString();
         String phone1 = phone.getText().toString();
