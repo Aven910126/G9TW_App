@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +15,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 //import com.example.tw2ver01.dao.UserDao;
 public class MainActivity extends AppCompatActivity {
-
+    LoginResponse loginResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent intent = getIntent();
+        if(intent.getExtras() != null){
+            loginResponse = (LoginResponse) intent.getSerializableExtra("data");
+            Log.e("Tag","=====>"+loginResponse.getEmail());
+        }
+
     }
 
     public void gotoemergencyinput  (View v){
@@ -51,40 +60,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-//    public void reg(View view){
-//
-//        startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
-//
-//    }
-
-
-//    public void login(View view){
-//
-//        EditText EditTextname = (EditText)findViewById(R.id.name);
-//        EditText EditTextpassword = (EditText)findViewById(R.id.password);
-//
-//        new Thread(){
-//            @Override
-//            public void run() {
-//
-//                UserDao userDao = new UserDao();
-//
-//                boolean aa = userDao.login(EditTextname.getText().toString(),EditTextpassword.getText().toString());
-//                int msg = 0;
-//                if(aa){
-//                    msg = 1;
-//                }
-//
-//                hand1.sendEmptyMessage(msg);
-//
-//
-//            }
-//        }.start();
-//
-//
-//    }
     final Handler hand1 = new Handler()
     {
         @Override
