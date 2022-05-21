@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,22 +35,36 @@ public class page_register extends AppCompatActivity {
         rbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(riptmail.getText().toString())||TextUtils.isEmpty(rusername.getText().toString())||TextUtils.isEmpty(riptpwd.getText().toString())||TextUtils.isEmpty(rcpwd.getText().toString())){
-
-                    String message = "All input required";
-                    Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();;
-                }else{
-                    RegisterRequest registerRequest = new RegisterRequest();
-                    registerRequest.setEmail(riptmail.getText().toString());
-                    registerRequest.setPassword(riptpwd.getText().toString());
-                    registerRequest.setUsername(rusername.getText().toString());
-                    registerUser(registerRequest);
+//                RegisterRequest registerRequest = new RegisterRequest();
+//                registerRequest.setEmail(riptmail.getText().toString());
+//                registerRequest.setPassword(riptpwd.getText().toString());
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("contactNo", rusername.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                try {
+                    jsonObject.put("contactPerson", riptmail.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    jsonObject.put("deviceCode", "0122");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    jsonObject.put("relationship", riptpwd.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                registerUser(jsonObject);
             }
         });
 
     }
-    public void registerUser(RegisterRequest registerRequest){
+    public void registerUser(JSONObject registerRequest){
         Call<RegisterResponse> registerResponseCall = ApiClinent.getService().registerUser(registerRequest);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
@@ -66,6 +82,7 @@ public class page_register extends AppCompatActivity {
                     String message = "An error occurred please try again later ...";
                     Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();;
                 }
+
             }
 
             @Override

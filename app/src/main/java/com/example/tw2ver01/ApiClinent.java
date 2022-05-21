@@ -16,7 +16,7 @@ public class ApiClinent {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://api.larntech.net/swagger/")
+                .baseUrl("http://localhost:8080/api/EmergencyContact/")
                 .client(okHttpClient)
                 .build();
 

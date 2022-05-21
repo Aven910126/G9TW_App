@@ -5,7 +5,6 @@ public class RegisterRequest {
     private String username;
     private String email;
     private String password;
-    private String data_joined = "2020-04-20T12:16:34.566Z";
 
     public String getUsername() {
         return username;
@@ -29,13 +28,5 @@ public class RegisterRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getData_joined() {
-        return data_joined;
-    }
-
-    public void setData_joined(String data_joined) {
-        this.data_joined = data_joined;
     }
 }
