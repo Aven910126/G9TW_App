@@ -60,9 +60,9 @@ public class page_emergency_input extends AppCompatActivity {
             public void onClick(View v) {
                 JSONObject jsonObject = new JSONObject();
                 Bundle bundle = new Bundle();
-                EditText name = (EditText) findViewById(R.id.name);
-                EditText re = (EditText) findViewById(R.id.call);
-                EditText phone = (EditText) findViewById(R.id.phone);
+                EditText name = findViewById(R.id.name);
+                EditText re =  findViewById(R.id.call);
+                EditText phone =  findViewById(R.id.phone);
                 String devicecode = "0122";
                 String name1 = name.getText().toString();
                 String call1 = re.getText().toString();
