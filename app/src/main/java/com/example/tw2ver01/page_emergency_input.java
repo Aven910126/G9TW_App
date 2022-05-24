@@ -40,6 +40,7 @@ public class page_emergency_input extends AppCompatActivity {
     public static final String EXTRA_MESSAGE="com.example.tw2ver01.MESSAGE";
     public static final String EXTRA_MESSAGE1="com.example.tw2ver01.MESSAGE";
     public static final String EXTRA_MESSAGE2="com.example.tw2ver01.MESSAGE";
+    JSONObject jsonObject;//創造
 
     OkHttpClient client = new OkHttpClient().newBuilder().build();
     @Override
@@ -58,7 +59,6 @@ public class page_emergency_input extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject jsonObject = new JSONObject();
                 Bundle bundle = new Bundle();
                 EditText name = findViewById(R.id.name);
                 EditText re =  findViewById(R.id.call);
@@ -71,7 +71,8 @@ public class page_emergency_input extends AppCompatActivity {
                 bundle.putString("call", call1);
                 bundle.putString("phone",phone1);
                 try{
-                    jsonObject.put("contactNo", phone.getText().toString());
+                    jsonObject = new JSONObject();
+                    jsonObject.put("contactNo", phone.getText().toString());//用了自己創造出來的Lod4
                     jsonObject.put("contactPerson", name.getText().toString());
                     jsonObject.put("deviceCode", "0122");
                     jsonObject.put("relationship", re.getText().toString());

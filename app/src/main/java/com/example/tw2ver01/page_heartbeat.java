@@ -2,6 +2,7 @@ package com.example.tw2ver01;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,29 +29,25 @@ import okhttp3.Response;
 import okhttp3.internal.http2.Http2Reader;
 
 public class page_heartbeat extends AppCompatActivity {
+    private Button btnUpdate;
     String heartbeat;
+    private String value;
+    private Handler handler=null;
+    private TextView heartoutcome = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_heartbeat);
-        TextView heartoutcome = findViewById(R.id.heartoutcome);
-        Button btnUpdate = findViewById(R.id.btnUpdate);
-
-        Bundle bundle0311 =this.getIntent().getExtras();
-//                heartbeat = bundle0311.getString("heartbeat");
-                System.out.println(heartbeat);
-                //顯示發送的字串
-                heartoutcome.setText(heartbeat);
+        heartoutcome = (TextView)findViewById(R.id.heartoutcome);
+        btnUpdate = findViewById(R.id.btnUpdate);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                class registTrashcanTask extends AsyncTask<Void, Void,Boolean> {
-                    int i=18;
-                    private String value;
+                handler = new Handler();
+                class heartvalueget extends AsyncTask<Void, Void,Boolean> {
                     private Button btnUpdate,btnAccount,btnLocation,btnMoney,btnSetting;
                     OkHttpClient client = new OkHttpClient();
-
                     @Override
                     protected Boolean doInBackground(Void... voids) {
 
@@ -62,26 +59,34 @@ public class page_heartbeat extends AppCompatActivity {
                                 if (response.code() == 200) {
                                     String result = response.body().string();
                                     JSONObject jsonObject = new JSONObject(result);
-                                    value = jsonObject.toString();
+                                    value = jsonObject.getString("heartBeatValue");
                                     System.out.println(value);
-                                    onPostExecute();
+//                                    onPostExecute();
                                 }
 
                             } catch (IOException | JSONException e) {
                                 e.printStackTrace();
                             }
-
                             return null;
                     }
-
-                    protected void onPostExecute() {
-                        heartoutcome.setText(value);
-                    }
                 }
-                new registTrashcanTask().execute();
+                new Thread(){
+                    public void run(){
+                        handler.post(runnableUi);
+                    }
+                }.start();
+                new heartvalueget().execute();
             }
         });
     }
+    Runnable runnableUi=new  Runnable(){
+        @Override
+        public void run() {
+            //更新介面
+            heartoutcome.setText(value);
+        }
+
+    };
 }
 
 
