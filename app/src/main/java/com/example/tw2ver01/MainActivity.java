@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         btngps.setOnClickListener(new View.OnClickListener() {
             private String data;
-            private Double longitude1;
-            private Double latitude1;
+            private Double longitude;
+            private Double latitude;
             Bundle bundle = new Bundle();
 
             public void find(){
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 RequestBody body = RequestBody.create( "",mediaType);
                 Request request = new Request.Builder()
                         .url("https://8b8d-2001-b011-b800-d98b-84a4-361a-da0a-d6ed.ngrok.io/api/Gps/now/1")
+//                        .method("GET", body)
                         .addHeader("Content-Type", "application/json")
                         .build();
                 Response response;
@@ -95,20 +96,23 @@ public class MainActivity extends AppCompatActivity {
                         String result = response.body().string();
                         Log.d("OkHttp result", result);
                         JSONObject jsonObject = null;
+
                         try {
                             jsonObject = new JSONObject(result);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                         data = jsonObject.toString();
+
                         try {
-                            longitude1 = Double.parseDouble(jsonObject.getString("longitude"));
-                            latitude1 = Double.parseDouble(jsonObject.getString("latitude"));
+                            longitude = Double.parseDouble(jsonObject.getString("longitude"));
+                            latitude = Double.parseDouble(jsonObject.getString("latitude"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        System.out.println(longitude1);
-                        System.out.println(latitude1);
+                        System.out.println(longitude);
+                        System.out.println(latitude);
                         System.out.println(data);
                     }
                     @Override
@@ -120,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onClick(View view) {
-                find();
-//                bundle.putDouble("longitude",longitude1);
-//                bundle.putDouble("latitude",latitude1);
+//                find();
+//                bundle.putDouble("longitude",longitude);
+//                bundle.putDouble("latitude",latitude);
                 Intent intent = new  Intent(MainActivity.this,page_maps1.class);
-//                intent.putExtras(bundle);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
