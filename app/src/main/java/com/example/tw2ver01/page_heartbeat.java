@@ -52,10 +52,11 @@ public class page_heartbeat extends AppCompatActivity {
 //                heartoutcome.setText(result);
                 System.out.println(result);
 //                Log.d("OkHttp result", result);
-
+                JSONObject jsonObject = null;
                     try {
                         //建立一個JSONObject並帶入JSON格式文字，getString(String key)取出欄位的數值 heartBeatValue
-                        JSONObject jsonObject = new JSONObject(jsonText);
+                        jsonObject = new JSONObject(result);
+
                         heartbeat = jsonObject.getString("heartBeatValue");
                         System.out.println(heartbeat);
                     } catch (JSONException e) {
