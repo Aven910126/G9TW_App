@@ -76,52 +76,52 @@ public class MainActivity extends AppCompatActivity {
             private Double latitude;
             Bundle bundle = new Bundle();
 
-            public void find(){
-                OkHttpClient client = new OkHttpClient().newBuilder()
-                        .build();
-                MediaType mediaType = MediaType.parse("application/json");
-                RequestBody body = RequestBody.create( "",mediaType);
-                Request request = new Request.Builder()
-                        .url("https://8b8d-2001-b011-b800-d98b-84a4-361a-da0a-d6ed.ngrok.io/api/Gps/now/1")
-//                        .method("GET", body)
-                        .addHeader("Content-Type", "application/json")
-                        .build();
-                Response response;
-
-                Call call = client.newCall(request);
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        // 連線成功
-                        String result = response.body().string();
-                        Log.d("OkHttp result", result);
-                        JSONObject jsonObject = null;
-
-                        try {
-                            jsonObject = new JSONObject(result);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        data = jsonObject.toString();
-
-                        try {
-                            longitude = Double.parseDouble(jsonObject.getString("longitude"));
-                            latitude = Double.parseDouble(jsonObject.getString("latitude"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println(longitude);
-                        System.out.println(latitude);
-                        System.out.println(data);
-                    }
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        System.out.println(request);
-                    }
-                });
-
-            }
+//            public void find(){
+//                OkHttpClient client = new OkHttpClient().newBuilder()
+//                        .build();
+//                MediaType mediaType = MediaType.parse("application/json");
+//                RequestBody body = RequestBody.create( "",mediaType);
+//                Request request = new Request.Builder()
+//                        .url("https://8b8d-2001-b011-b800-d98b-84a4-361a-da0a-d6ed.ngrok.io/api/Gps/now/1")
+////                        .method("GET", body)
+//                        .addHeader("Content-Type", "application/json")
+//                        .build();
+//                Response response;
+//
+//                Call call = client.newCall(request);
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        // 連線成功
+//                        String result = response.body().string();
+//                        Log.d("OkHttp result", result);
+//                        JSONObject jsonObject = null;
+//
+//                        try {
+//                            jsonObject = new JSONObject(result);
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        data = jsonObject.toString();
+//
+//                        try {
+//                            longitude = Double.parseDouble(jsonObject.getString("longitude"));
+//                            latitude = Double.parseDouble(jsonObject.getString("latitude"));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                        System.out.println(longitude);
+//                        System.out.println(latitude);
+//                        System.out.println(data);
+//                    }
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        System.out.println(request);
+//                    }
+//                });
+//
+//            }
             @Override
             public void onClick(View view) {
 //                find();
@@ -141,9 +141,55 @@ public class MainActivity extends AppCompatActivity {
         });
 
         hebtbtn.setOnClickListener(new View.OnClickListener() {
+//            private String heartbeat;
+//            Bundle bundle = new Bundle();
+//            public void find() {
+//                OkHttpClient client = new OkHttpClient().newBuilder()
+//                        .build();
+//                Bundle bundle = new Bundle();
+//                MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+//                //        RequestBody body = RequestBody.create( "",mediaType);
+//                Request request = new Request.Builder()
+//                        .url("https://20a8-2001-b011-b800-d98b-159a-1c02-67ee-c6bd.ngrok.io/api/HeartBeat/now/1")
+////                .method("GET", body)
+//                        .addHeader("Content-Type", "application/json")
+//                        .build();
+//                Call call = client.newCall(request);
+//
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        // 連線成功
+//                        String result = response.body().string();
+////                heartoutcome.setText(result);
+//                        System.out.println(result);
+//                        JSONObject jsonObject = null;
+//                        try {
+////                  建立一個JSONObject並帶入JSON格式文字，getString(String key)取出欄位的數值 heartBeatValue
+//                            jsonObject = new JSONObject(result);
+//                            heartbeat = jsonObject.getString("heartBeatValue");
+//                            System.out.println(heartbeat);
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        System.out.println(request);
+//                    }
+//                });
+//            }
+
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,page_heartbeat.class));
+//                  find();
+//                bundle.putString("heartbeat",heartbeat);
+                Intent intent = new  Intent(MainActivity.this,page_heartbeat.class);
+//                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
