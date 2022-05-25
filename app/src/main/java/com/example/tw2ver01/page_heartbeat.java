@@ -41,7 +41,6 @@ public class page_heartbeat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_heartbeat);
         handler = new Handler();
-        heartoutcome = (TextView)findViewById(R.id.heartoutcome);
 
         new Thread(new Runnable() {
 
