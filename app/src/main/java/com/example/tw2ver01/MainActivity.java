@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 //                    public void onResponse(Call call, Response response) throws IOException {
 //                        // 連線成功
 //                        String result = response.body().string();
-////                heartoutcome.setText(result);
+////                       heartoutcome.setText(result);
 //                        System.out.println(result);
 //                        JSONObject jsonObject = null;
 //                        try {
