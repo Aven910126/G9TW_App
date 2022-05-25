@@ -38,55 +38,45 @@ public class page_heartbeat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_heartbeat);
+        handler = new Handler();
         heartoutcome = (TextView)findViewById(R.id.heartoutcome);
         btnUpdate = findViewById(R.id.btnUpdate);
-
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handler = new Handler();
-                class heartvalueget extends AsyncTask<Void, Void,Boolean> {
-                    private Button btnUpdate,btnAccount,btnLocation,btnMoney,btnSetting;
+                class heartvalueget extends AsyncTask<Void, Void,String> {
                     OkHttpClient client = new OkHttpClient();
                     @Override
-                    protected Boolean doInBackground(Void... voids) {
+                    protected String doInBackground(Void... voids) {
 
-                            Request request = new Request.Builder()
-                                    .url("https://20a8-2001-b011-b800-d98b-159a-1c02-67ee-c6bd.ngrok.io/api/HeartBeat/now/1")
-                                    .build();
-
-                            try (Response response = client.newCall(request).execute()) {
-                                if (response.code() == 200) {
-                                    String result = response.body().string();
-                                    JSONObject jsonObject = new JSONObject(result);
-                                    value = jsonObject.getString("heartBeatValue");
-                                    System.out.println(value);
-//                                    onPostExecute();
-                                }
-
-                            } catch (IOException | JSONException e) {
-                                e.printStackTrace();
+                        Request request = new Request.Builder()
+                                .url("https://3e5c-2001-b011-b800-d98b-7dbb-b09e-c89a-cc10.ngrok.io/api/HeartBeat/now/1")
+                                .build();
+                        try (Response response = client.newCall(request).execute()) {
+                            if (response.code() == 200) {
+                                String result = response.body().string();
+                                JSONObject jsonObject = new JSONObject(result);
+                                value = jsonObject.getString("heartBeatValue");
+                                return value;
                             }
-                            return null;
+
+                        } catch (IOException | JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
                     }
+                    @Override
+                    protected void onPostExecute(String result) {
+                        if (result != null){
+                            heartoutcome.setText(result);
+                        }
+                    }
+
                 }
-                new Thread(){
-                    public void run(){
-                        handler.post(runnableUi);
-                    }
-                }.start();
                 new heartvalueget().execute();
             }
         });
     }
-    Runnable runnableUi=new  Runnable(){
-        @Override
-        public void run() {
-            //更新介面
-            heartoutcome.setText(value);
-        }
-
-    };
 }
 
 
