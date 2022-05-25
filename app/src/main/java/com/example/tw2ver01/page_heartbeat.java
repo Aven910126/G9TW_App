@@ -29,7 +29,6 @@ import okhttp3.Response;
 import okhttp3.internal.http2.Http2Reader;
 
 public class page_heartbeat extends AppCompatActivity {
-    private Button btnUpdate;
     String heartbeat;
     private String value;
     private Handler handler=null;
@@ -40,10 +39,6 @@ public class page_heartbeat extends AppCompatActivity {
         setContentView(R.layout.activity_page_heartbeat);
         handler = new Handler();
         heartoutcome = (TextView)findViewById(R.id.heartoutcome);
-        btnUpdate = findViewById(R.id.btnUpdate);
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 class heartvalueget extends AsyncTask<Void, Void,String> {
                     OkHttpClient client = new OkHttpClient();
                     @Override
@@ -65,17 +60,13 @@ public class page_heartbeat extends AppCompatActivity {
                         }
                         return null;
                     }
-                    @Override
                     protected void onPostExecute(String result) {
                         if (result != null){
                             heartoutcome.setText(result);
                         }
                     }
-
                 }
                 new heartvalueget().execute();
-            }
-        });
     }
 }
 
