@@ -2,26 +2,24 @@ package com.example.tw2ver01;
 
 public class RegisterResponse {
 
-//    private int id;
-//    private String username;
-//    private String email;
-//    private String phone;
-//    private String call;
-
-
-    private String contactPerson;//聯絡人
+    private int id;
+    private String username;
     private String email;
-    private String password;
-    private String contactNo;//電話
-    private String relationship;//稱謂
-    private  String deviceCode;
 
-    public String getContactPerson() {
-        return contactPerson;
+    public int getId() {
+        return id;
     }
 
-    public void setContactPerson(String contactPerson) {
-        this.contactPerson = contactPerson;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -30,37 +28,5 @@ public class RegisterResponse {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getContactNo() {
-        return contactNo;
-    }
-
-    public void setContactNo(String contactNo) {
-        this.contactNo = contactNo;
-    }
-
-    public String getRelationship() {
-        return relationship;
-    }
-
-    public void setRelationship(String relationship) {
-        this.relationship = relationship;
-    }
-
-    public String getDeviceCode() {
-        return deviceCode;
-    }
-
-    public void setDeviceCode(String deviceCode) {
-        this.deviceCode = deviceCode;
     }
 }

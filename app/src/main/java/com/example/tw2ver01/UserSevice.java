@@ -8,6 +8,8 @@ public interface UserSevice {
     @POST("account/login/")
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 
-    @POST("EmergencyContact/create/")
+    @POST("account/create/")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequset);
+
+
 }
