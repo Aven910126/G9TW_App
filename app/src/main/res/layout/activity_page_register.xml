@@ -78,7 +78,7 @@
         android:layout_marginBottom="234dp"
         android:background="@drawable/login1_"
         android:fadeScrollbars="true"
-        android:text="REG"
+        android:text="register"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

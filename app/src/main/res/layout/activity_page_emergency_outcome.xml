@@ -11,8 +11,8 @@
         android:id="@+id/textView"
         android:layout_width="249dp"
         android:layout_height="136dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="288dp"
         android:text="textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
