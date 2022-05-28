@@ -67,26 +67,16 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
             @Override
             protected Void doInBackground(Void... Void) {
                 Request request = new Request.Builder()
-                        .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/Gps/now/1")
+                        .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/Gps/now/2")
                         .build();
-
-
                 try (Response response = client.newCall(request).execute()) {
                     if (response.code() == 200) {
                         JSONObject jsonObject = new JSONObject(response.body().string());
-
-                        for (int i = 0; i < jsonObject.length(); i++) {
-                            JSONObject j =  jsonObject.getJSONObject(String.valueOf(i));
-                            longitude = Double.parseDouble(j.getString("longitude"));
-                            latitude = Double.parseDouble(j.getString("latitude"));
-                        }
-
-
+                            longitude = Double.parseDouble(jsonObject.getString("longitude"));
+                            latitude = Double.parseDouble(jsonObject.getString("latitude"));
                     }
                     System.out.println(latitude);
                     System.out.println(longitude);
-
-
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
@@ -95,10 +85,10 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
 
             @Override
             protected void onPostExecute(Void result) {
-                System.out.println(result);
-                LatLng location = new LatLng(latitude,longitude );
+                LatLng location = new LatLng(latitude,longitude);
                 mMap.addMarker(new MarkerOptions().position(location).title("I here."));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                mMap.setMinZoomPreference(15.0f);
             }
         }
         new getLocationTask().execute();

@@ -44,7 +44,6 @@ public class page_heartbeat extends AppCompatActivity {
         handler = new Handler();
 
         new Thread(new Runnable() {
-
             @Override
 
             public void run() {
