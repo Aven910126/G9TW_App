@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -31,13 +32,15 @@ public class page_login extends AppCompatActivity {
     Button btnlogin;
     EditText inputemail,inputpwd;
     TextView createAcc;
+    private Handler handler=null;
+    private boolean info;
     OkHttpClient client = new OkHttpClient().newBuilder().build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_login);
-
+        handler = new Handler();
         btnlogin = findViewById(R.id.btnlogin);
         inputemail = findViewById(R.id.inputemail);
         inputpwd = findViewById(R.id.inputpwd);
@@ -142,61 +145,67 @@ public class page_login extends AppCompatActivity {
                     }
                     }
                 new login().execute();
-                }
 
 
 
 
-//
-//                JSONObject jsonObject = new JSONObject();
-//                Bundle bundle = new Bundle();
-//                EditText inputemail = findViewById(R.id.inputemail);
-//                EditText inputpwd = findViewById(R.id.inputpwd);
-//                String mail = inputemail.getText().toString();
-//                String pwd = inputpwd.getText().toString();
-//
-//
-//                bundle.putString("email", mail);
-//                bundle.putString("password", pwd);
-//
-//                try {
-//
-//                    jsonObject.put("email", inputemail.getText().toString());
-//                    jsonObject.put("password", inputpwd.getText().toString());
-//                    System.out.println(jsonObject);
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
-//                RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
-//                Request request = new Request.Builder()
-//                        .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/EmergencyContact/login")
-//                        .method("POST", body)
-//                        .addHeader("Content-Type", "application/json")
-//                        .build();
-//
-//                okhttp3.Call call = client.newCall(request);
-//
-//                call.enqueue(new Callback() {
-//                    @Override
-//                    public void onResponse(okhttp3.Call call, Response response) throws IOException {
-//                        // 連線成功
-//                        String result = response.body().string();
-//                        Log.d("OkHttp result", result);
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        System.out.println(request);
-//                    }
-//                });
+
+                new Thread(new Runnable() {
+                    @Override
+
+                    public void run() {
+
+                        while (true) {
+                            // write code
+
+                            class sostrg extends AsyncTask<Void, Void, Boolean> {
+                                OkHttpClient client = new OkHttpClient();
+
+                                @Override
+                                protected Boolean doInBackground(Void... voids) {
+                                    Request request = new Request.Builder()
+                                            .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/Gps/sostrigger/1")
+                                            .build();
+
+                                    try (Response response = client.newCall(request).execute()) {
+                                        if (response.code() == 200) {
+                                            String result = response.body().string();
+                                            JSONObject jsonObject = new JSONObject(result);
+                                            info = jsonObject.getBoolean("sosInfo");
+                                            System.out.println(info);
+                                            return info;
+                                        }
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    return info;
+                                }
+
+                                protected void onPostExecute(String result) {
+
+                                }
+                            }
+
+
+                            new sostrg().execute();
+
+                            try {
+                                Thread.sleep(30000);
+
+                            } catch (InterruptedException e) {
+
+                                e.printStackTrace();
+
+                            }
+                        }
+                    }
+
+                }).start();
 
 
 
+
+            }
         });
     }
 

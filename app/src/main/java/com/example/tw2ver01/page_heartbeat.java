@@ -78,9 +78,10 @@ public class page_heartbeat extends AppCompatActivity {
                             }
                         }
                     }
+
                     new heartvalueget().execute();
 
-                    try { Thread.sleep(1000);
+                    try { Thread.sleep(5000);
 
                     } catch (InterruptedException e) {
 
