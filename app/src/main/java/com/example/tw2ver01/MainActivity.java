@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 //                RequestBody body = RequestBody.create( "",mediaType);
 //                Request request = new Request.Builder()
 //                        .url("https://8b8d-2001-b011-b800-d98b-84a4-361a-da0a-d6ed.ngrok.io/api/Gps/now/1")
-////                        .method("GET", body)
+////                      .method("GET", body)
 //                        .addHeader("Content-Type", "application/json")
 //                        .build();
 //                Response response;

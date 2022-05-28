@@ -45,7 +45,6 @@ public class page_register extends AppCompatActivity {
                     Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();
 
                 }else{
-
                     RegisterRequest registerRequest = new RegisterRequest();
                     registerRequest.setEmail(riptmail.getText().toString());
                     registerRequest.setPassword(riptpwd.getText().toString());
