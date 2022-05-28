@@ -26,11 +26,11 @@
         android:id="@+id/createAcc"
         android:layout_width="164dp"
         android:layout_height="18dp"
-        android:layout_marginBottom="352dp"
+        android:layout_marginBottom="280dp"
         android:text="CREATE ACCOUNT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
