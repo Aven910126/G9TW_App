@@ -85,7 +85,6 @@ public class page_login extends AppCompatActivity {
                             .method("POST", body)
                             .build();
 
-                     Call call = client.newCall(request);
 
                         try (Response response = client.newCall(request).execute()) {
                             if (response.code() == 200) {
@@ -159,8 +158,6 @@ public class page_login extends AppCompatActivity {
                             // write code
 
                             class sostrg extends AsyncTask<Void, Void, Boolean> {
-                                OkHttpClient client = new OkHttpClient();
-
                                 @Override
                                 protected Boolean doInBackground(Void... voids) {
                                     Request request = new Request.Builder()

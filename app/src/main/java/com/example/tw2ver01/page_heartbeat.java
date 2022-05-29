@@ -32,16 +32,27 @@ import okhttp3.Response;
 import okhttp3.internal.http2.Http2Reader;
 
 public class page_heartbeat extends AppCompatActivity {
-    String heartbeat;
     private String value;
-    private Handler handler=null;
-    private TextView heartoutcome = null;
-    @Override
+    private Handler handler;
+    private TextView heartoutcome;
+
+    private void ini(){
+            var();
+    }
+
+    private void var(){
+        value=("");
+        Handler handler = null;
+        heartoutcome = null;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_heartbeat);
         heartoutcome = findViewById(R.id.heartoutcome);
         handler = new Handler();
+
+
 
         new Thread(new Runnable() {
             @Override
@@ -53,6 +64,7 @@ public class page_heartbeat extends AppCompatActivity {
 
                     class heartvalueget extends AsyncTask<Void, Void,String> {
                         OkHttpClient client = new OkHttpClient();
+
                         @Override
                         protected String doInBackground(Void... voids) {
                             Request request = new Request.Builder()
@@ -83,9 +95,7 @@ public class page_heartbeat extends AppCompatActivity {
                     try { Thread.sleep(5000);
 
                     } catch (InterruptedException e) {
-
                         e.printStackTrace();
-
                     }
                 }
             }

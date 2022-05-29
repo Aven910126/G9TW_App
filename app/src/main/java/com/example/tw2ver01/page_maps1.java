@@ -49,7 +49,6 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
     }
 
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -62,6 +61,8 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        longitude =null;
+        latitude = null;
         mMap = googleMap;
         class getLocationTask extends AsyncTask<Void, Void, Void> {
             @Override
