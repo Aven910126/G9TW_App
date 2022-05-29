@@ -2,6 +2,7 @@ package com.example.tw2ver01;
 import androidx.fragment.app.FragmentActivity;
 
 import android.database.DatabaseErrorHandler;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -29,21 +30,20 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
+    OkHttpClient client = new OkHttpClient();
 
     private GoogleMap mMap;
     private ActivityPageMaps1Binding binding;
-    private String data;
-    public Double longitude;
-    public Double latitude;
+    private Double longitude,latitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         binding = ActivityPageMaps1Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Bundle bundle0311 =this.getIntent().getExtras();
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+//        Bundle bundle0311 =this.getIntent().getExtras();
+//         Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -62,19 +62,39 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Bundle bundle0524 =this.getIntent().getExtras();
-        Double latitude1 = bundle0524.getDouble("longitude");
-        Double longitude1 = bundle0524.getDouble("longitude");
         mMap = googleMap;
+        class getLocationTask extends AsyncTask<Void, Void, Void> {
+            @Override
+            protected Void doInBackground(Void... Void) {
+                Request request = new Request.Builder()
+                        .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/now/2")
+                        .build();
+                try (Response response = client.newCall(request).execute()) {
+                    if (response.code() == 200) {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                            longitude = Double.parseDouble(jsonObject.getString("longitude"));
+                            latitude = Double.parseDouble(jsonObject.getString("latitude"));
+                    }
+                    System.out.println(latitude);
+                    System.out.println(longitude);
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
 
-        LatLng Yuntech = new LatLng(latitude1, longitude1);
+            @Override
+            protected void onPostExecute(Void result) {
+                LatLng location = new LatLng(latitude,longitude);
+                mMap.addMarker(new MarkerOptions().position(location).title("I here."));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                mMap.setMinZoomPreference(15.0f);
+            }
+        }
+        new getLocationTask().execute();
 
-        mMap.addMarker(new MarkerOptions().position(Yuntech).title("我在這"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Yuntech));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
-
-
-
-
+//        System.out.println(longgps);
+//        System.out.println(latigps);
+        // Add a marker in Sydney and move the camera
     }
 }

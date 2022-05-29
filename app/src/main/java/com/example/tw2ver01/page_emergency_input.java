@@ -49,33 +49,27 @@ public class page_emergency_input extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_page_emergency_input);
         btnConfirm = findViewById(R.id.button);
-//        btnBackmain.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new  Intent(page_emergency_input.this, page_emergency_outcome.class);
-//                startActivity(intent);
-//            }
-//        });
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 JSONObject jsonObject = new JSONObject();
                 Bundle bundle = new Bundle();
-                EditText name = findViewById(R.id.name);
-                EditText re = findViewById(R.id.call);
-                EditText phone = findViewById(R.id.phone);
-                String devicecode = "0122";
-                String name1 = name.getText().toString();
-                String call1 = re.getText().toString();
-                String phone1 = phone.getText().toString();
-                bundle.putString("name", name1);
-                bundle.putString("call", call1);
-                bundle.putString("phone", phone1);
+                EditText bname = findViewById(R.id.bname);
+                EditText baddress = findViewById(R.id.baddress);
+                EditText bdeviceCode = findViewById(R.id.bdeviceCode);
+                String name1 = bname.getText().toString();
+                String call1 = baddress.getText().toString();
+                String phone1 = bdeviceCode.getText().toString();
+
+                bundle.putString("username", name1);
+                bundle.putString("address", call1);
+                bundle.putString("bdeviceCode", phone1);
+
                 try {
-                    jsonObject.put("contactNo", phone.getText().toString());
-                    jsonObject.put("contactPerson", name.getText().toString());
-                    jsonObject.put("deviceCode", "0122");
-                    jsonObject.put("relationship", re.getText().toString());
+                    jsonObject.put("deviceCode", bdeviceCode.getText().toString());
+                    jsonObject.put("username", bname.getText().toString());
+                    jsonObject.put("address", baddress.getText().toString());
                     System.out.println(jsonObject);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -83,7 +77,7 @@ public class page_emergency_input extends AppCompatActivity {
                 MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
                 RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
                 Request request = new Request.Builder()
-                        .url("https://3e5c-2001-b011-b800-d98b-7dbb-b09e-c89a-cc10.ngrok.io/api/EmergencyContact/create")
+                        .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/account/finduser/")
                         .method("POST", body)
                         .addHeader("Content-Type", "application/json")
                         .build();
@@ -102,15 +96,8 @@ public class page_emergency_input extends AppCompatActivity {
                         System.out.println(request);
                     }
                 });
-//
-//                try{
-//                    Response response = client.newCall(request).execute();
-//                    if(response.isSuccessful()){
-//                        System.out.println(response);
-//                    }
-//                } catch (IOException e) {
-//                    System.out.println(request);
-//                }
+
+
                 Intent intent = new Intent(page_emergency_input.this, page_emergency_outcome.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
