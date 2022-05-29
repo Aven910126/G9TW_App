@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        reg = findViewById(R.id.reg);
-        login = findViewById(R.id.login);
+//        reg = findViewById(R.id.reg);
+//        login = findViewById(R.id.login);
         live = findViewById(R.id.live);
         btngps = findViewById(R.id.btngps);
-        emycbtn = findViewById(R.id.emycbtn);
+//        emycbtn = findViewById(R.id.emycbtn);
         hebtbtn = findViewById(R.id.hebtbtn);
         FirebaseMessaging.getInstance().subscribeToTopic("news");
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
@@ -64,20 +64,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        reg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,page_register.class));
-            }
-        });
+//        reg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this,page_register.class));
+//            }
+//        });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new  Intent(MainActivity.this,page_login.class);
-                startActivity(intent);
-            }
-        });
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new  Intent(MainActivity.this,page_login.class);
+//                startActivity(intent);
+//            }
+//        });
 
         live.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        emycbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,page_emergency_input.class));
-            }
-        });
+//        emycbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this,page_emergency_input.class));
+//            }
+//        });
 
         hebtbtn.setOnClickListener(new View.OnClickListener() {
 //            private String heartbeat;
