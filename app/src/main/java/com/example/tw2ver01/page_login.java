@@ -45,7 +45,7 @@ public class page_login extends AppCompatActivity {
         inputemail = findViewById(R.id.inputemail);
         inputpwd = findViewById(R.id.inputpwd);
         createAcc = findViewById(R.id.createAcc);
-
+        Bundle bundle =this.getIntent().getExtras();
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,7 +81,7 @@ public class page_login extends AppCompatActivity {
                      MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
                      RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
                      Request request = new Request.Builder()
-                            .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/EmergencyContact/login")
+                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/EmergencyContact/login")
                             .method("POST", body)
                             .build();
 
@@ -95,8 +95,8 @@ public class page_login extends AppCompatActivity {
                                 JSONObject data = jsonObject.getJSONObject("deviceCode");
                                 long devicecode = data.getLong("deviceCode");
                                 boolean bind = data.getBoolean("bind");
+//                                String email=
                                 if(bind ==false) {
-
                                     OkHttpClient client = new OkHttpClient();
                                     jsonObject = new JSONObject();
                                     try {
@@ -109,7 +109,7 @@ public class page_login extends AppCompatActivity {
                                     MediaType a = MediaType.parse("application/json; charset=utf-8");
                                     RequestBody b = RequestBody.create(jsonObject.toString(), a);
                                     Request re = new Request.Builder()
-                                            .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/Device/create/1")
+                                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Device/create/1")
                                             .method("PATCH", b)
                                             .build();
                                     try (Response rp = client.newCall(re).execute()) {
@@ -164,7 +164,7 @@ public class page_login extends AppCompatActivity {
                                 @Override
                                 protected Boolean doInBackground(Void... voids) {
                                     Request request = new Request.Builder()
-                                            .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/Gps/sostrigger/1")
+                                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/sostrigger/1")
                                             .build();
 
                                     try (Response response = client.newCall(request).execute()) {

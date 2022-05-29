@@ -37,7 +37,7 @@ public class SoS extends AppCompatActivity {
                         @Override
                         protected Boolean doInBackground(Void... voids) {
                             Request request = new Request.Builder()
-                                    .url("https://d2ee-2001-b011-b800-5984-b1d2-a7b1-8432-d029.ngrok.io/api/Gps/sostrigger/1")
+                                    .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/sostrigger/1")
                                     .build();
 
                             try (Response response = client.newCall(request).execute()) {

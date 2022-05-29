@@ -1,5 +1,6 @@
 package com.example.tw2ver01;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,6 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     LoginResponse loginResponse;
     Button reg,login,live,btngps,emycbtn,hebtbtn;
 
+    public static final String TAG = FCMService.TAG;
+    public static String token = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,15 @@ public class MainActivity extends AppCompatActivity {
         btngps = findViewById(R.id.btngps);
         emycbtn = findViewById(R.id.emycbtn);
         hebtbtn = findViewById(R.id.hebtbtn);
-
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful())return;
+                token = task.getResult();
+                Log.d(TAG, "onComplete: "+token);
+            }
+        });
 
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,page_login.class));
+                Intent intent = new  Intent(MainActivity.this,page_login.class);
+                startActivity(intent);
             }
         });
 
@@ -76,57 +92,9 @@ public class MainActivity extends AppCompatActivity {
             private Double latitude;
             Bundle bundle = new Bundle();
 
-//            public void find(){
-//                OkHttpClient client = new OkHttpClient().newBuilder()
-//                        .build();
-//                MediaType mediaType = MediaType.parse("application/json");
-//                RequestBody body = RequestBody.create( "",mediaType);
-//                Request request = new Request.Builder()
-//                        .url("https://8b8d-2001-b011-b800-d98b-84a4-361a-da0a-d6ed.ngrok.io/api/Gps/now/1")
-////                      .method("GET", body)
-//                        .addHeader("Content-Type", "application/json")
-//                        .build();
-//                Response response;
-//
-//                Call call = client.newCall(request);
-//                call.enqueue(new Callback() {
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        // 連線成功
-//                        String result = response.body().string();
-//                        Log.d("OkHttp result", result);
-//                        JSONObject jsonObject = null;
-//
-//                        try {
-//                            jsonObject = new JSONObject(result);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        data = jsonObject.toString();
-//
-//                        try {
-//                            longitude = Double.parseDouble(jsonObject.getString("longitude"));
-//                            latitude = Double.parseDouble(jsonObject.getString("latitude"));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                        System.out.println(longitude);
-//                        System.out.println(latitude);
-//                        System.out.println(data);
-//                    }
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        System.out.println(request);
-//                    }
-//                });
-//
-//            }
+
             @Override
             public void onClick(View view) {
-//                find();
-//                bundle.putDouble("longitude",longitude);
-//                bundle.putDouble("latitude",latitude);
                 Intent intent = new  Intent(MainActivity.this,page_maps1.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
