@@ -35,7 +35,7 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ActivityPageMaps1Binding binding;
     private Double longitude,latitude;
-
+    private String http="https://ef24-2001-b011-b800-d7d8-d5d4-ff24-71fe-7d72.ngrok.io";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +67,7 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
             @Override
             protected Void doInBackground(Void... Void) {
                 Request request = new Request.Builder()
-                        .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/now/2")
+                        .url(http+"/api/Gps/now/2")
                         .build();
                 try (Response response = client.newCall(request).execute()) {
                     if (response.code() == 200) {

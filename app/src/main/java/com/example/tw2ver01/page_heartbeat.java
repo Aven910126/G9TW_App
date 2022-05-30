@@ -36,6 +36,7 @@ public class page_heartbeat extends AppCompatActivity {
     private String value;
     private Handler handler=null;
     private TextView heartoutcome = null;
+    private String http="https://ef24-2001-b011-b800-d7d8-d5d4-ff24-71fe-7d72.ngrok.io";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class page_heartbeat extends AppCompatActivity {
                         @Override
                         protected String doInBackground(Void... voids) {
                             Request request = new Request.Builder()
-                                    .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/HeartBeat/now/1")
+                                    .url(http+"/api/HeartBeat/now/1")
                                     .build();
 
                             try (Response response = client.newCall(request).execute()) {
