@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/messageimage_1653478110059"
+    android:background="@drawable/messageimage_1653921648412"
     tools:context=".page_login">
 
     <Button
