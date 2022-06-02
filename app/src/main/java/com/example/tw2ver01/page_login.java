@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,7 +35,6 @@ public class page_login extends AppCompatActivity {
     private Handler handler=null;
     private boolean info;
     OkHttpClient client = new OkHttpClient().newBuilder().build();
-    private String http="https://ef24-2001-b011-b800-d7d8-d5d4-ff24-71fe-7d72.ngrok.io";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +81,10 @@ public class page_login extends AppCompatActivity {
                      MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
                      RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
                      Request request = new Request.Builder()
-                            .url(http+"/api/EmergencyContact/login")
+                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/EmergencyContact/login")
                             .method("POST", body)
                             .build();
 
-                     Call call = client.newCall(request);
 
                         try (Response response = client.newCall(request).execute()) {
                             if (response.code() == 200) {
@@ -111,7 +108,7 @@ public class page_login extends AppCompatActivity {
                                     MediaType a = MediaType.parse("application/json; charset=utf-8");
                                     RequestBody b = RequestBody.create(jsonObject.toString(), a);
                                     Request re = new Request.Builder()
-                                            .url(http+"/api/Device/create/1")
+                                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Device/create/1")
                                             .method("PATCH", b)
                                             .build();
                                     try (Response rp = client.newCall(re).execute()) {
@@ -148,71 +145,62 @@ public class page_login extends AppCompatActivity {
                     }
                 new login().execute();
 
-//                new Thread(new Runnable() {
-//                    @Override
-//
-//                    public void run() {
-//
-//                        while (true) {
-//                            // write code
-//
-//                            class sostrg extends AsyncTask<Void, Void, Boolean> {
-//                                OkHttpClient client = new OkHttpClient.Builder()
-//                                        .connectTimeout(5, TimeUnit.MINUTES) // connect timeout
-//                                        .writeTimeout(5, TimeUnit.MINUTES) // write timeout
-//                                        .readTimeout(5, TimeUnit.MINUTES) // read timeout
-//                                        .build();
-//
-//                                @Override
-//                                protected Boolean doInBackground(Void... voids) {
-//                                    System.out.println("info");
-//                                    Request request = new Request.Builder()
-//                                            .url(http+"https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/sostrigger/1")
-//                                            .build();
-//                                    try (Response response = client.newCall(request).execute()) {
-//                                        if (response.code() == 200) {
-//                                            String result = response.body().string();
-//                                            JSONObject jsonObject = new JSONObject(result);
-//                                            info = jsonObject.getBoolean("sosInfo");
-//                                            OkHttpClient client = new OkHttpClient();
-//                                            MediaType mediaType = MediaType.parse("text/plain");
-//                                            RequestBody body = RequestBody.create("",mediaType);
-//                                            Request re = new Request.Builder()
-//                                                    .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/relievesos/1")
-//                                                    .method("PATCH", body)
-//                                                    .build();
-//                                            try (Response rp = client.newCall(re).execute()) {
-//                                                if (rp.code() == 200) {
-//                                                    String result1 = rp.body().string();
-//                                                    jsonObject = new JSONObject(result1);
-//                                                    System.out.println(result1);
-//                                                }
-//                                            } catch (IOException | JSONException e) {
-//                                                e.printStackTrace();
-//                                            }
-//                                            System.out.println(info);
-//                                        }
-//                                    }catch (IOException | JSONException e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                    return info;
-//                                }
-//
-//                                protected void onPostExecute(String result) {
-//
-//                                }
-//                            }
-//                            new sostrg().execute();
-//                            try {
-//                                Thread.sleep(30000);
-//                            } catch (InterruptedException e) {
-//                                e.printStackTrace();
-//
-//                            }
-//                        }
-//                    }
-//
-//                }).start();
+
+
+
+
+                new Thread(new Runnable() {
+                    @Override
+
+                    public void run() {
+
+                        while (true) {
+                            // write code
+
+                            class sostrg extends AsyncTask<Void, Void, Boolean> {
+                                @Override
+                                protected Boolean doInBackground(Void... voids) {
+                                    Request request = new Request.Builder()
+                                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Gps/sostrigger/1")
+                                            .build();
+
+                                    try (Response response = client.newCall(request).execute()) {
+                                        if (response.code() == 200) {
+                                            String result = response.body().string();
+                                            JSONObject jsonObject = new JSONObject(result);
+                                            info = jsonObject.getBoolean("sosInfo");
+                                            System.out.println(info);
+                                            return info;
+                                        }
+                                    } catch (IOException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    return info;
+                                }
+
+                                protected void onPostExecute(String result) {
+
+                                }
+                            }
+
+
+                            new sostrg().execute();
+
+                            try {
+                                Thread.sleep(30000);
+
+                            } catch (InterruptedException e) {
+
+                                e.printStackTrace();
+
+                            }
+                        }
+                    }
+
+                }).start();
+
+
+
 
             }
         });
