@@ -81,7 +81,7 @@ public class page_login extends AppCompatActivity {
                      MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
                      RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
                      Request request = new Request.Builder()
-                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/EmergencyContact/login")
+                            .url("https://d562-2001-b011-b800-30e7-68b7-7234-be97-e317.ngrok.io/api/EmergencyContact/login")
                             .method("POST", body)
                             .build();
 
@@ -108,7 +108,7 @@ public class page_login extends AppCompatActivity {
                                     MediaType a = MediaType.parse("application/json; charset=utf-8");
                                     RequestBody b = RequestBody.create(jsonObject.toString(), a);
                                     Request re = new Request.Builder()
-                                            .url("https://7119-2001-b011-b800-5984-e86d-fb22-f980-ee6a.ngrok.io/api/Device/create/1")
+                                            .url("https://d562-2001-b011-b800-30e7-68b7-7234-be97-e317.ngrok.io/api/Device/create/1")
                                             .method("PATCH", b)
                                             .build();
                                     try (Response rp = client.newCall(re).execute()) {
