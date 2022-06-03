@@ -68,7 +68,7 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
             @Override
             protected Void doInBackground(Void... Void) {
                 Request request = new Request.Builder()
-                        .url(http+"/api/Gps/now/2")
+                        .url(http+"/api/Gps/now/1")
                         .build();
                 try (Response response = client.newCall(request).execute()) {
                     if (response.code() == 200) {
