@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.367" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3135" />
+        <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/font/baloo_tamma_2.xml" value="0.3963541666666667" />
+        <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/font/baloo_tamma_2_bold.xml" value="0.3963541666666667" />
+        <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/font/baloo_tamma_2_extrabold.xml" value="0.3963541666666667" />
+        <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/font/baloo_tammudu.xml" value="0.3963541666666667" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_callphone.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_maps.xml" value="0.36614583333333334" />
@@ -13,7 +17,7 @@
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_emergency_outcome.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_gps.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_heartbeat.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_liveimage.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_liveimage.xml" value="0.2" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_login.xml" value="0.33" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_maps.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/Tim/Desktop/G9TW_App/app/src/main/res/layout/activity_page_maps1.xml" value="0.36614583333333334" />
