@@ -81,7 +81,7 @@ public class page_login extends AppCompatActivity {
                      MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
                      RequestBody body = RequestBody.create(jsonObject.toString(), mediaType);
                      Request request = new Request.Builder()
-                            .url("https://fa31-2001-b011-b800-30e7-1495-6130-b40d-1faf.ngrok.io/api/EmergencyContact/login")
+                            .url("https://c05b-2001-b011-b800-d21e-c0d0-aa95-1cdf-229d.ngrok.io/api/EmergencyContact/login")
                             .method("POST", body)
                             .build();
 
@@ -108,7 +108,7 @@ public class page_login extends AppCompatActivity {
                                     MediaType a = MediaType.parse("application/json; charset=utf-8");
                                     RequestBody b = RequestBody.create(jsonObject.toString(), a);
                                     Request re = new Request.Builder()
-                                            .url("https://fa31-2001-b011-b800-30e7-1495-6130-b40d-1faf.ngrok.io/api/Device/create/1")
+                                            .url("https://c05b-2001-b011-b800-d21e-c0d0-aa95-1cdf-229d.ngrok.io/api/Device/create/1")
                                             .method("PATCH", b)
                                             .build();
                                     try (Response rp = client.newCall(re).execute()) {
@@ -157,7 +157,7 @@ public class page_login extends AppCompatActivity {
                                 @Override
                                 protected Boolean doInBackground(Void... voids) {
                                     Request request = new Request.Builder()
-                                            .url("https://fa31-2001-b011-b800-30e7-1495-6130-b40d-1faf.ngrok.io/api/Gps/sostrigger/1")
+                                            .url("https://c05b-2001-b011-b800-d21e-c0d0-aa95-1cdf-229d.ngrok.io/api/Gps/sostrigger/1")
                                             .build();
 
                                     try (Response response = client.newCall(request).execute()) {

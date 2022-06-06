@@ -35,7 +35,7 @@ public class page_maps1 extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ActivityPageMaps1Binding binding;
     private Double longitude,latitude;
-    private String http="https://fa31-2001-b011-b800-30e7-1495-6130-b40d-1faf.ngrok.io";
+    private String http="https://c05b-2001-b011-b800-d21e-c0d0-aa95-1cdf-229d.ngrok.io";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

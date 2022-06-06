@@ -38,7 +38,7 @@ public class page_Liveimage extends AppCompatActivity {
                     @Override
                     protected Bitmap doInBackground(Void... voids) {
                         Request request = new Request.Builder()
-                                .url("https://fa31-2001-b011-b800-30e7-1495-6130-b40d-1faf.ngrok.io/api/Image/now/1")
+                                .url("https://c05b-2001-b011-b800-d21e-c0d0-aa95-1cdf-229d.ngrok.io/api/Image/now/1")
                                 .build();
 
                         try (Response response = client.newCall(request).execute()) {
