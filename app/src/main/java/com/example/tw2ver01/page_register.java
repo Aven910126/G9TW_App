@@ -15,16 +15,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-class message{
-    public String msg;
-}
-
 
 public class page_register extends AppCompatActivity {
 
     Button rbtn;
     EditText rusername,riptmail,riptpwd,rcpwd,rphone,rcall,rdeviceCode;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +39,7 @@ public class page_register extends AppCompatActivity {
         rbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(TextUtils.isEmpty(riptmail.getText().toString()) && TextUtils.isEmpty(rusername.getText().toString()) && TextUtils.isEmpty(riptpwd.getText().toString()) && TextUtils.isEmpty(rcpwd.getText().toString()) && TextUtils.isEmpty(rcall.getText().toString()) && TextUtils.isEmpty(rphone.getText().toString())){
 
                     String message = "All input required";
@@ -56,45 +52,40 @@ public class page_register extends AppCompatActivity {
                     registerRequest.setContactPerson(rusername.getText().toString());
                     registerRequest.setRelationship(rcall.getText().toString());
                     registerRequest.setContactNo(rphone.getText().toString());
-                    registerRequest.setDeviceCode(rdeviceCode.getText().toString());
-                    registerUser(registerRequest);
 
+                    registerRequest.setDeviceCode(Long.valueOf(rdeviceCode.getText().toString()));
+
+//                    registerUser(registerRequest);
                 }
             }
         });
     }
 
-    public void registerUser(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall = ApiClinent.getService().registerUser(registerRequest);
-        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
-
-
-            private message mSg;
-
-            @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-
-                if(response.isSuccessful()){
-
-                    Toast.makeText(page_register.this,mSg.msg="Successful ..",Toast.LENGTH_LONG).show();
-
-                    startActivity(new Intent(page_register.this,page_login.class));
-                    finish();
-
-                }else{
-                    String message = "An error occurred please try again later ...";
-                    Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                String message = t.getLocalizedMessage();
-                Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
-    }
+//    public void registerUser(RegisterRequest registerRequest){
+//        Call<RegisterResponse> registerResponseCall = ApiClinent.getService().registerUser(registerRequest);
+//        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+//
+//            @Override
+//            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+//
+//                if(response.isSuccessful()){
+////                    String message = "Successful ..";
+//                    Toast.makeText(page_register.this, "Successful ..",Toast.LENGTH_LONG).show();
+//
+//                    startActivity(new Intent(page_register.this,page_login.class));
+//                    finish();
+//
+//                }else{
+//                    String message = "An error occurred please try again later ...";
+//                    Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+//                String message = t.getLocalizedMessage();
+//                Toast.makeText(page_register.this,message,Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 }
